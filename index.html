@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<title>2mriky Pack Bulk</title>
+<meta name="description" content="الزق الكلام، يطلع ملف md أو txt جاهز للشير والحفظ.">
+<meta name="theme-color" content="#111111">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pack Bulk">
+<link rel="manifest" href="manifest.json?v=1">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+<div class="app">
+
+  <header class="top">
+    <div class="brand"><span class="dot"></span><b>Pack</b> Bulk</div>
+    <div class="top-actions">
+      <button class="ghost" id="btnHistory" type="button">السابق <span class="badge" id="histCount" style="display:none"></span></button>
+    </div>
+  </header>
+
+  <section class="editor">
+    <textarea id="text" dir="auto" spellcheck="false" autocomplete="off" autocapitalize="sentences"
+      placeholder="الزق الكلام هنا…"></textarea>
+    <div class="editor-tools">
+      <button class="chip" id="btnPaste" type="button">لصق</button>
+      <button class="chip" id="btnClear" type="button" style="display:none">مسح</button>
+      <span class="stats" id="stats"></span>
+    </div>
+  </section>
+
+  <section class="settings">
+    <div class="row name-row">
+      <input id="name" type="text" dir="auto" placeholder="اسم الملف" autocomplete="off" enterkeyhint="done">
+      <span class="ext" id="extLabel">.md</span>
+    </div>
+
+    <div class="row">
+      <div class="seg" id="segFormat" role="radiogroup" aria-label="نوع الملف">
+        <button type="button" data-v="auto" class="on">تلقائي</button>
+        <button type="button" data-v="md">MD</button>
+        <button type="button" data-v="txt">TXT</button>
+      </div>
+      <div class="seg" id="segSplit" role="radiogroup" aria-label="التقسيم">
+        <button type="button" data-v="one" class="on">ملف واحد</button>
+        <button type="button" data-v="hr">عند ---</button>
+        <button type="button" data-v="h">عند العناوين</button>
+      </div>
+    </div>
+
+    <div class="hint" id="hint"></div>
+
+    <details class="clean">
+      <summary>تنظيف تلقائي <span id="cleanSummary"></span></summary>
+      <label><input type="checkbox" id="optTrim" checked> شيل المسافات الزيادة آخر السطور</label>
+      <label><input type="checkbox" id="optBlank" checked> اقفل السطور الفاضية المتكررة لسطر واحد</label>
+      <label><input type="checkbox" id="optInvisible" checked> شيل الرموز المخفية (zero-width)</label>
+      <label><input type="checkbox" id="optDate"> زوّد التاريخ في آخر الاسم</label>
+    </details>
+
+    <div class="files" id="files" style="display:none"></div>
+  </section>
+
+  <footer class="actions">
+    <button class="primary" id="btnShare" type="button" disabled>شير / حفظ</button>
+    <button class="secondary" id="btnDownload" type="button" disabled>تنزيل</button>
+    <button class="secondary icon" id="btnCopy" type="button" disabled aria-label="نسخ النص">نسخ</button>
+  </footer>
+
+</div>
+
+<div class="sheet-backdrop" id="sheetBackdrop" style="display:none"></div>
+<aside class="sheet" id="sheet" style="display:none" aria-label="الملفات السابقة">
+  <div class="sheet-head">
+    <b>الملفات السابقة</b>
+    <button class="ghost" id="btnCloseSheet" type="button">قفل</button>
+  </div>
+  <div class="sheet-list" id="histList"></div>
+  <p class="sheet-empty" id="histEmpty">لسه مفيش. أي ملف تطلّعه هيظهر هنا.</p>
+  <button class="danger" id="btnClearHist" type="button" style="display:none">امسح السجل</button>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite" style="display:none"></div>
+
+<script src="app.js?v=1"></script>
+</body>
+</html>
